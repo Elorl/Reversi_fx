@@ -1,16 +1,21 @@
 package gui;
 
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import reversi.*;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
 
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Stack;
 
 public class ReversiGrid extends GridPane {
     private Board board;
@@ -45,7 +50,16 @@ public class ReversiGrid extends GridPane {
         }
 
         @Override
-        public void handle(MouseEvent event) {
+        public void handle(MouseEvent event){
+
+            //get controller
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            MainController controller = loader.getController();
 
             int counter;
             //negative color
@@ -82,6 +96,7 @@ public class ReversiGrid extends GridPane {
             //if next player has a move
             if(counter > 0) {
                 togglePlayers();
+                controller.updateLabels(turnPlayer.getType(), player1.getCount(), player2.getCount());
                 return;
 
                 //there is no possible option.
@@ -92,6 +107,7 @@ public class ReversiGrid extends GridPane {
                 if(counter > 0) {
                     System.out.println("No possible moves. Play passes back to the other player.");
                     //return without toggling players
+                    controller.updateLabels(turnPlayer.getType(), player1.getCount(), player2.getCount());
                     return;
                 }
                 //2 players have no move
@@ -101,6 +117,8 @@ public class ReversiGrid extends GridPane {
             }
         }
         }
+
+
 
     /**
      * switch players.
@@ -131,6 +149,19 @@ public class ReversiGrid extends GridPane {
 
         for(int i = 0; i < boardHeight; i++) {
             for(int j = 0; j < boardWidth; j++) {
+
+                StackPane pane = new StackPane();
+                pane.setPrefHeight(cellHeight);
+                pane.setPrefWidth(cellWidth);
+                pane.setAlignment(Pos.CENTER);
+                pane.getChildren().add(new Rectangle(cellWidth, cellHeight, Color.rgb(255, 166, 77)));
+                pane.setBorder(new Border(new BorderStroke(Color.rgb(102, 51, 0),
+                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                this.add(pane, i, j);
+                GridPane.setHalignment(pane, HPos.CENTER);
+                GridPane.setValignment(pane, VPos.CENTER);
+
+
                 //check color of the cell
                 Color color;
                 if(boardArr.get(i).get(j).getColor() == reversi.Color.WHITE) {
@@ -140,13 +171,13 @@ public class ReversiGrid extends GridPane {
                     color = Color.BLACK;
                 }
                 else {
-                    color = Color.YELLOW;
+                    color = Color.TRANSPARENT;
                 }
 
                 //add circle with corresponding color to cell
                 Circle circle = new Circle(cellWidth/2, color );
                 circle.setOnMouseClicked(new DiskFlip(i, j));
-                this.add(circle, j, i);
+                pane.getChildren().add(circle);
             }
         }
     }
