@@ -105,7 +105,7 @@ public class gameController implements Initializable{
         colors = new javafx.scene.paint.Color[2];
         String colorStr;
         for(int i = 0; i < 2; i++) {
-            colorStr =  settings[i].replaceAll("0x", "#").substring(0, 6);
+            colorStr =  settings[i].replaceAll("0x", "#").substring(0, 7);
             awtColors[i] = java.awt.Color.decode(colorStr );
             int red = awtColors[i].getRed();
             int green = awtColors[i].getGreen();
