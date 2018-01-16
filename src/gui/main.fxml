@@ -1,76 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Light.Distant?>
-<?import javafx.scene.effect.Lighting?>
-<?import javafx.scene.effect.Shadow?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Line?>
-<?import javafx.scene.text.Text?>
 
-<HBox fx:id="root" prefHeight="600.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
+<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Main">
    <children>
-
-         <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="600.0" spacing="10.0">
-            <children>
-            <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Close" textFill="WHITE" />
-               <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Settings" textFill="WHITE" />
-            <Button id="startButton" fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="20.0" mnemonicParsing="false" onAction="#settingsAction" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #461c00;" text="Start" textFill="WHITE" />
-            <Line endX="100.0" />
-            <Text id="currentPlayerTxt" fx:id="currentPlayerTxt" text="Current player">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></Text>
-            <Line endX="100.0" layoutX="13.0" layoutY="173.0" />
-            <Circle id="currentPlayerCircle" fx:id="currentPlayerCircle" fill="#1265b20f" layoutX="62.0" layoutY="206.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-            <Line endX="100.0" />
-            <Label text="Scores" />
-            <Line endX="100.0" layoutX="13.0" layoutY="136.0" />
-            <Circle id="player1ScoreCircle" fx:id="player1ScoreCircle" fill="#1265b20f" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text id="player1ScoreTxt" fx:id="player1ScoreTxt" fill="#b14d00" text=" Player 1">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></Text>
-            <Label id="player1ScoreLbl" fx:id="player1ScoreLbl" text="2" textFill="#461c00" />
-            <Line endX="100.0" />
-            <Circle id="player2ScoreCircle" fx:id="player2ScoreCircle" fill="#1265b20f" layoutX="62.0" layoutY="206.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
-            <Text id="player2ScoreTxt" fx:id="player2ScoreTxt" fill="#b14d00" text=" Player 2 ">
-               <effect>
-                  <Lighting>
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant />
-                     </light>
-                  </Lighting>
-               </effect></Text>
-            <Label id="player2ScoreLbl" fx:id="player2ScoreLbl" text="2" textFill="#461c00" />
-            <Label id="gameOver" fx:id="gameOver" />
-            <Label />
-            </children>
-         <padding>
-            <Insets right="10.0" top="10.0" />
-         </padding>
-         </VBox>
+      <VBox layoutX="121.0" layoutY="114.0" prefHeight="172.0" prefWidth="158.0" spacing="10.0">
+         <children>
+             <Button id="startButton" fx:id="startButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startAction" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #461c00;" text="Start" textFill="WHITE" />
+             <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: #461c00;" text="Settings" textFill="WHITE" />
+         </children>
+      </VBox>
    </children>
 
-</HBox>
+</AnchorPane>

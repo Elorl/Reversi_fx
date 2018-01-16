@@ -24,17 +24,28 @@ public class ReversiGrid extends GridPane {
     private Player turnPlayer;
     private GameLogic logic;
     private GameInfoListener infoListener;
+    private Color[] colors;
 
-
+    /**
+     * constructor
+     * @param board reversi board object
+     * @param player1 player1
+     * @param player2 player2
+     * @param logic logic
+     * @param infoListener listening to info changes and update diaplay
+     * @param colors colors of players
+     */
     ReversiGrid(Board board, Player player1, Player player2, GameLogic logic,
-                GameInfoListener infoListener){
+                GameInfoListener infoListener, Color[] colors){
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
         this.turnPlayer = player1;
         this.logic = logic;
         this.infoListener = infoListener;
+        this.colors = colors;
 
+        // loading, and setting grid as it's own controller
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reversiGrid.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -49,14 +60,27 @@ public class ReversiGrid extends GridPane {
         return turnPlayer;
     }
 
+    /**
+     * an event handler for updating board after a click
+     */
     private class DiskFlip implements EventHandler<MouseEvent> {
         int x;
         int y;
+
+        /**
+         * constructor.
+         * @param x x index on grid
+         * @param y y index on grid
+         */
         DiskFlip(int x, int y) {
             this.x = x;
             this.y = y;
         }
 
+        /**
+         * handles a mouse event by flipping relevant disks on grid
+         * @param event mouse event
+         */
         @Override
         public void handle(MouseEvent event){
 
@@ -104,7 +128,7 @@ public class ReversiGrid extends GridPane {
                 }
                 //2 players have no move
                 else {
-
+                    infoListener.updateInfo();
                     infoListener.alertEnd(logic.getWinner());
                 }
             }
@@ -140,11 +164,14 @@ public class ReversiGrid extends GridPane {
         int cellHeight = height / boardHeight;
         int cellWidth = width / boardWidth;
 
+        //updating grid with relevant disks by scanning the reversi board matrix
         for(int i = 0; i < boardHeight; i++) {
             for(int j = 0; j < boardWidth; j++) {
+                //adding a stack pane to the grid, and circle inside it
                 StackPane shadowPane = new StackPane();
                 shadowPane.setPrefHeight(cellHeight);
                 shadowPane.setPrefWidth(cellWidth);
+                //adding a 3D effect
                 shadowPane.setAlignment(Pos.BOTTOM_RIGHT);
                 shadowPane.getChildren().add(new Rectangle(cellWidth, cellHeight, Color.rgb(255, 166, 77)));
                 shadowPane.setBorder(new Border(new BorderStroke(Color.rgb(102, 51, 0),
@@ -156,16 +183,18 @@ public class ReversiGrid extends GridPane {
                 pane.setPrefWidth(cellWidth);
                 pane.setAlignment(Pos.CENTER);
                 this.add(pane, i,j);
+
+                //centering content in pane
                 GridPane.setHalignment(pane, HPos.CENTER);
                 GridPane.setValignment(pane, VPos.CENTER);
 
                 //check color of the cell
                 Color color;
-                if(boardArr.get(i).get(j).getColor() == reversi.Color.WHITE) {
-                    color = Color.WHITE;
+                if(boardArr.get(i).get(j).getColor() == reversi.Color.BLACK) {
+                    color = colors[0];
                 }
-                else if(boardArr.get(i).get(j).getColor() == reversi.Color.BLACK) {
-                    color = Color.BLACK;
+                else if(boardArr.get(i).get(j).getColor() == reversi.Color.WHITE) {
+                    color = colors[1];
                 }
                 else {
                     color = Color.TRANSPARENT;
