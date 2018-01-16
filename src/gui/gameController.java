@@ -103,8 +103,10 @@ public class gameController implements Initializable{
         // then convert to javafx Color object
         java.awt.Color[] awtColors = new java.awt.Color[2];
         colors = new javafx.scene.paint.Color[2];
+        String colorStr;
         for(int i = 0; i < 2; i++) {
-            awtColors[i] = java.awt.Color.decode("#" + settings[i]);
+            colorStr =  settings[i].replaceAll("0x", "#").substring(0, 6);
+            awtColors[i] = java.awt.Color.decode(colorStr );
             int red = awtColors[i].getRed();
             int green = awtColors[i].getGreen();
             int blue = awtColors[i].getBlue();
