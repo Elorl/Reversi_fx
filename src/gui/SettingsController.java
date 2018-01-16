@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.SplitPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -27,7 +24,11 @@ public class SettingsController implements Initializable {
     @FXML
     private ChoiceBox boardSizesBox;
     @FXML
+    private ComboBox playersBox;
+    @FXML
     private ObservableList<String> boardSizesList = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<String> playersList = FXCollections.observableArrayList();
     @FXML
     private Button saveBtn;
     @FXML
@@ -36,6 +37,8 @@ public class SettingsController implements Initializable {
     private ColorPicker player2Color;
     @FXML
     private AnchorPane ap = new AnchorPane();
+    @FXML
+    private Label comment = new Label();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //initialize board sizes list 4*4 to 20*20
@@ -45,6 +48,10 @@ public class SettingsController implements Initializable {
         }
         //insert list to board size box
         boardSizesBox.setItems(boardSizesList);
+        //initialize the list of players, to choose who will start.
+        this.playersList.add("PLayer One");
+        this.playersList.add("Player Two");
+        this.playersBox.setItems(this.playersList);
     }
 
 
@@ -54,32 +61,46 @@ public class SettingsController implements Initializable {
         this.settingsStage.setTitle("Settings");
         Parent settingsNode = FXMLLoader.load(getClass().getResource("settings.fxml"));
         this.settingsStage.setScene(new Scene(settingsNode));
-
-
         this.settingsStage.show();
 
     }
 
     public void saveVal() {
         Color colorP1, colorP2;
-        String size = boardSizesBox.getValue().toString();
-        colorP1 = player1Color.getValue();
-        colorP2 = player2Color.getValue();
+        colorP1 = this.player1Color.getValue();
+        colorP2 = this.player2Color.getValue();
+        String size ="", playerTurn ="";
+        try {
+            size = this.boardSizesBox.getValue().toString();
+            playerTurn = this.playersBox.getValue().toString();
+        } catch (Exception NullPointerException) {
+            AlertBox.display("something's missing. did you forgot to fill something?");
+            this.settingsStage = (Stage) this.saveBtn.getScene().getWindow();
+            return;
+        }
+        int playerNum = 0;
+        if(playerTurn.equals("PLayer One")) {
+            playerNum = 1;
+        } else if(playerTurn.equals("Player Two")) {
+            playerNum = 2;
+        }
         if (!colorP1.toString().equals(colorP2.toString())) {
             File settingsFIle = new File("settings.txt");
             String[] num = size.split("x");
-            String str = colorP1.toString() + " " + colorP2.toString() + " " + num[0];
-            int sizeNumber = Integer.parseInt(num[0]);
+            String str = colorP1.toString() + " " + colorP2.toString() + " " + num[0] + " " + playerNum;
             try {
                 FileOutputStream file = new FileOutputStream(settingsFIle.getName());
                 PrintStream writer = new PrintStream(file);
                 writer.print(str);
                 file.close();
+                this.settingsStage = (Stage) this.saveBtn.getScene().getWindow();
+                this.settingsStage.close();
             } catch (Exception FileNotFoundException) {
                 throw new RuntimeException();
             }
+        } else {
+            AlertBox.display("Choose different color to each player!");
         }
-        this.settingsStage = (Stage) this.saveBtn.getScene().getWindow();
-        this.settingsStage.close();
+
     }
 }
