@@ -12,7 +12,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
 
         HBox root = (HBox) FXMLLoader.load(getClass().getResource("main.fxml"));
-        primaryStage.setTitle("reversi Menu");
+        primaryStage.setTitle("reversi");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
