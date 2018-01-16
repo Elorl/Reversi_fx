@@ -1,43 +1,46 @@
 package gui;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.ObjectProperty;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import reversi.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MainController implements Initializable {
+public class MainController implements Initializable{
+
+    ReversiGrid grid;
     @FXML
     private HBox root;
     @FXML
-    private Button playButton;
+    private VBox sideBar;
     @FXML
-    private Button settingsButton;
+    Button settingsButton;
     @FXML
-    private Label currentPlayerLbl = new Label("");
+    private Label currentPlayerLbl;
     @FXML
-    private Label player1ScoreLbl = new Label("");
+    private Text player1ScoreTxt;
     @FXML
-    private Label player2ScoreLbl = new Label("");
+    private Label player1ScoreLbl;
+    @FXML
+    private Text player2ScoreTxt;
+    @FXML
+    private Label player2ScoreLbl;
+    @FXML
+    private Label gameOver;
     @FXML
     public void playAction(ActionEvent event) throws IOException {
 
         Parent gameNode = FXMLLoader.load(getClass().getResource("reversiGrid.fxml"));
-        //Scene scene = new Scene(gameNode);
-        //Stage primaryStage = (Stage)playButton.getScene().getWindow();
-
-        //primaryStage.setScene(scene);
-
     }
 
     @FXML
@@ -48,28 +51,53 @@ public class MainController implements Initializable {
         settingsController.settingsAction();
     }
 
-    @FXML
-    public void updateLabels(Color currentPlayer, int player1Score, int player2Score) {
-        currentPlayerLbl.setText(currentPlayer.toString());
-        player1ScoreLbl.setText(String.valueOf(player1Score));
-        player2ScoreLbl.setText(String.valueOf(player2Score));
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         // change to reading from settings file;
-        
+
 
         //initialize grid
-        Board board = new Board(8, 8);
+        Board board = new Board(13, 13);
         Player first = new ManualPlayer(Color.BLACK);
         Player second = new ManualPlayer(Color.WHITE);
+        currentPlayerLbl.setText(String.valueOf(first.getType().toString()));
+        //labels updater anonymous class implements GameInfoListener is sent to the grid
+        // so when event happens ,info will be updated
+        GameInfoListener labelsUpdater = new GameInfoListener() {
+            @Override
+            public void updateInfo() {
+                currentPlayerLbl.setText(grid.getTurnPlayer().getType().toString());
+                player1ScoreLbl.setText(String.valueOf(first.getCount()));
+                player2ScoreLbl.setText(String.valueOf(second.getCount()));
+            }
+            @Override
+            public void alertEnd(Color winnerColor) {
+                if(winnerColor == Color.EMPTY) {
+                    gameOver.setText("Game Over.\nIts a draw");
+                    return;
+                }
+                gameOver.setText("Game Over.\nWinner: " + winnerColor.toString());
+            }
+        };
 
         GameLogic logic = new ManualLogic(board, first, second);
-        ReversiGrid grid = new ReversiGrid(board, first, second, logic);
+        grid = new ReversiGrid(board, first, second, logic, labelsUpdater);
+        root.getChildren().add(0, grid);
+
+        /*handle resize
+        root.widthProperty().addListener((observable, oldValue, newValue) -> { double
+                boardNewWidth = newValue.doubleValue() - 120;
+            grid.setPrefWidth(boardNewWidth);
+            grid.draw();
+        });
+        root.heightProperty().addListener((observable, oldValue, newValue) -> {
+            grid.setPrefHeight(newValue.doubleValue());
+            grid.draw();
+        });*/
         grid.setPrefHeight(600);
         grid.setPrefWidth(600);
-        root.getChildren().add(0, grid);
+
         grid.draw();
     }
 }

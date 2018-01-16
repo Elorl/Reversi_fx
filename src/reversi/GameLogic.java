@@ -16,4 +16,6 @@ public interface GameLogic {
     void initializeOpt();
 
     void printPoints();
+
+    Color getWinner();
 }

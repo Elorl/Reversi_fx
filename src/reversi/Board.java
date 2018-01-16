@@ -23,10 +23,12 @@ public class Board {
             }
             this.boardArr.add(rowCell);
         }
-        this.boardArr.get(3).get(3).setColor(Color.WHITE);
-        this.boardArr.get(4).get(4).setColor(Color.WHITE);
-        this.boardArr.get(3).get(4).setColor(Color.BLACK);
-        this.boardArr.get(4).get(3).setColor(Color.BLACK);
+        int midRow = (int)Math.ceil(this.boardArr.size()/2.0);
+        int midCol = (int)Math.ceil(this.boardArr.get(0).size()/2.0);
+        this.boardArr.get(midRow - 1).get(midCol -1).setColor(Color.WHITE);
+        this.boardArr.get(midRow).get(midCol).setColor(Color.WHITE);
+        this.boardArr.get(midRow - 1).get(midCol).setColor(Color.BLACK);
+        this.boardArr.get(midRow).get(midCol - 1).setColor(Color.BLACK);
     }
 
     public int getRowsNum() {
@@ -38,6 +40,7 @@ public class Board {
     }
 
     public void printBoard() {
+        /*
         //print the first line.
         System.out.print(" | ");
         for(int i=1; i<9; i++) {
@@ -70,5 +73,6 @@ public class Board {
             System.out.println();
             System.out.println("----------------------------------");
         }
+        */
     }
 }

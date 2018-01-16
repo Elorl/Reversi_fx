@@ -15,7 +15,7 @@ import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Stack;
+
 
 public class ReversiGrid extends GridPane {
     private Board board;
@@ -23,13 +23,17 @@ public class ReversiGrid extends GridPane {
     private Player player2;
     private Player turnPlayer;
     private GameLogic logic;
+    private GameInfoListener infoListener;
 
-    ReversiGrid(Board board, Player player1, Player player2, GameLogic logic){
+
+    ReversiGrid(Board board, Player player1, Player player2, GameLogic logic,
+                GameInfoListener infoListener){
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
         this.turnPlayer = player1;
         this.logic = logic;
+        this.infoListener = infoListener;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("reversiGrid.fxml"));
         fxmlLoader.setRoot(this);
@@ -39,6 +43,10 @@ public class ReversiGrid extends GridPane {
         } catch(IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Player getTurnPlayer() {
+        return turnPlayer;
     }
 
     private class DiskFlip implements EventHandler<MouseEvent> {
@@ -52,29 +60,15 @@ public class ReversiGrid extends GridPane {
         @Override
         public void handle(MouseEvent event){
 
-            //get controller
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            MainController controller = loader.getController();
-
-            int counter;
             //negative color
             reversi.Color neg = turnPlayer.getType().toggle();
-
-            counter = 0;
+            int counter = 0;
             logic.initializeOpt();
-            System.out.println("current board:\n");
-            board.printBoard();
-            System.out.println(turnPlayer.getSymbol() + ": It's your move.");
+
             //check the options the player has.
             counter = logic.checkOpt(turnPlayer.getType());
 
 
-            logic.printOpt(counter);
             //if it's not a valid move, return
             if(!logic.validOpt(this.x,this.y)) {
                 return;
@@ -85,10 +79,9 @@ public class ReversiGrid extends GridPane {
             logic.swap(this.x, this.y, turnPlayer.getType(), neg);
             //draw grid after flipping
             draw();
-            //update points
-            logic.printPoints();
 
-            /*check next moves are possible*/
+            /*check next moves  possibility*/
+
             //check move possibility of next player
             logic.initializeOpt();
             counter = logic.checkOpt(neg);
@@ -96,7 +89,7 @@ public class ReversiGrid extends GridPane {
             //if next player has a move
             if(counter > 0) {
                 togglePlayers();
-                controller.updateLabels(turnPlayer.getType(), player1.getCount(), player2.getCount());
+                infoListener.updateInfo();
                 return;
 
                 //there is no possible option.
@@ -105,14 +98,14 @@ public class ReversiGrid extends GridPane {
                 logic.initializeOpt();
                 counter = logic.checkOpt(turnPlayer.getType());
                 if(counter > 0) {
-                    System.out.println("No possible moves. Play passes back to the other player.");
                     //return without toggling players
-                    controller.updateLabels(turnPlayer.getType(), player1.getCount(), player2.getCount());
+                    infoListener.updateInfo();
                     return;
                 }
                 //2 players have no move
                 else {
-                    System.out.println("No possible moves. game over.");
+
+                    infoListener.alertEnd(logic.getWinner());
                 }
             }
         }

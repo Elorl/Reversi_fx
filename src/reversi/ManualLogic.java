@@ -132,7 +132,7 @@ public class ManualLogic implements GameLogic {
 
     private void directionUpside(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor) {
         int x = i, y = j;
-        if(x < 0 || x > this.board.getRowsNum() || y < 0 || y > this.board.getColumnsNum()) {
+        if(x < 0 || x >= this.board.getRowsNum() || y < 0 || y >= this.board.getColumnsNum()) {
             this.initializeOpt();
             return;
         }
@@ -212,5 +212,20 @@ public class ManualLogic implements GameLogic {
             System.out.print("Its a draw");
         }
         this.initializeOpt();
+    }
+
+    @Override
+    public Color getWinner() {
+        if(player1.getCount() > player2.getCount()) {
+            return player1.getType();
+        }
+        else if(player1.getCount() < player2.getCount()) {
+            return player2.getType();
+        }
+        //if they got same score
+        else {
+            return Color.EMPTY;
+        }
+
     }
 }
