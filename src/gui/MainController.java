@@ -58,7 +58,7 @@ public class MainController implements Initializable{
 
 
         //initialize grid
-        Board board = new Board(13, 13);
+        Board board = new Board(20, 20);
         Player first = new ManualPlayer(Color.BLACK);
         Player second = new ManualPlayer(Color.WHITE);
         currentPlayerLbl.setText(String.valueOf(first.getType().toString()));
