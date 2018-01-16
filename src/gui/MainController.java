@@ -1,10 +1,13 @@
 package gui;
 
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import reversi.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class MainController implements Initializable{
 
     ReversiGrid grid;
@@ -25,6 +29,8 @@ public class MainController implements Initializable{
     private VBox sideBar;
     @FXML
     Button settingsButton;
+    @FXML
+    Button closeButton;
     @FXML
     private Label currentPlayerLbl;
     @FXML
@@ -39,7 +45,6 @@ public class MainController implements Initializable{
     private Label gameOver;
     @FXML
     public void playAction(ActionEvent event) throws IOException {
-
         Parent gameNode = FXMLLoader.load(getClass().getResource("reversiGrid.fxml"));
     }
 
@@ -51,6 +56,12 @@ public class MainController implements Initializable{
         settingsController.settingsAction();
     }
 
+    @FXML
+    public void closeAction() {
+        Stage c = (Stage) this.closeButton.getScene().getWindow();
+        this.closeButton.setOnAction(e -> c.close());
+        Platform.exit();
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -97,7 +108,6 @@ public class MainController implements Initializable{
         });*/
         grid.setPrefHeight(600);
         grid.setPrefWidth(600);
-
         grid.draw();
     }
 }

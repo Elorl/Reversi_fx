@@ -24,11 +24,7 @@ public class SettingsController implements Initializable {
     @FXML
     private ChoiceBox boardSizesBox;
     @FXML
-    private ComboBox playersBox;
-    @FXML
     private ObservableList<String> boardSizesList = FXCollections.observableArrayList();
-    @FXML
-    private ObservableList<String> playersList = FXCollections.observableArrayList();
     @FXML
     private Button saveBtn;
     @FXML
@@ -49,9 +45,6 @@ public class SettingsController implements Initializable {
         //insert list to board size box
         boardSizesBox.setItems(boardSizesList);
         //initialize the list of players, to choose who will start.
-        this.playersList.add("PLayer One");
-        this.playersList.add("Player Two");
-        this.playersBox.setItems(this.playersList);
     }
 
 
@@ -69,25 +62,18 @@ public class SettingsController implements Initializable {
         Color colorP1, colorP2;
         colorP1 = this.player1Color.getValue();
         colorP2 = this.player2Color.getValue();
-        String size ="", playerTurn ="";
+        String size;
         try {
             size = this.boardSizesBox.getValue().toString();
-            playerTurn = this.playersBox.getValue().toString();
         } catch (Exception NullPointerException) {
             AlertBox.display("something's missing. did you forgot to fill something?");
             this.settingsStage = (Stage) this.saveBtn.getScene().getWindow();
             return;
         }
-        int playerNum = 0;
-        if(playerTurn.equals("PLayer One")) {
-            playerNum = 1;
-        } else if(playerTurn.equals("Player Two")) {
-            playerNum = 2;
-        }
         if (!colorP1.toString().equals(colorP2.toString())) {
             File settingsFIle = new File("settings.txt");
             String[] num = size.split("x");
-            String str = colorP1.toString() + " " + colorP2.toString() + " " + num[0] + " " + playerNum;
+            String str = colorP1.toString() + " " + colorP2.toString() + " " + num[0];
             try {
                 FileOutputStream file = new FileOutputStream(settingsFIle.getName());
                 PrintStream writer = new PrintStream(file);

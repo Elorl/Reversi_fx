@@ -11,12 +11,13 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<HBox fx:id="root" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
+<HBox fx:id="root" prefHeight="600.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainController">
    <children>
 
-         <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" spacing="10.0">
+         <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="600.0" spacing="10.0">
             <children>
-               <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="42.0" prefWidth="104.0" style="-fx-background-color: #461c00;" text="settings" textFill="WHITE" />
+            <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Close" textFill="WHITE" />
+               <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Settings" textFill="WHITE" />
             <Line endX="100.0" />
             <Text id="currentPlayerTxt" fx:id="currentPlayerTxt" fill="#b14d00" text="Current player">
                <effect>
