@@ -142,18 +142,22 @@ public class ReversiGrid extends GridPane {
 
         for(int i = 0; i < boardHeight; i++) {
             for(int j = 0; j < boardWidth; j++) {
+                StackPane shadowPane = new StackPane();
+                shadowPane.setPrefHeight(cellHeight);
+                shadowPane.setPrefWidth(cellWidth);
+                shadowPane.setAlignment(Pos.BOTTOM_RIGHT);
+                shadowPane.getChildren().add(new Rectangle(cellWidth, cellHeight, Color.rgb(255, 166, 77)));
+                shadowPane.setBorder(new Border(new BorderStroke(Color.rgb(102, 51, 0),
+                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+                this.add(shadowPane, i, j);
 
                 StackPane pane = new StackPane();
                 pane.setPrefHeight(cellHeight);
                 pane.setPrefWidth(cellWidth);
                 pane.setAlignment(Pos.CENTER);
-                pane.getChildren().add(new Rectangle(cellWidth, cellHeight, Color.rgb(255, 166, 77)));
-                pane.setBorder(new Border(new BorderStroke(Color.rgb(102, 51, 0),
-                        BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-                this.add(pane, i, j);
+                this.add(pane, i,j);
                 GridPane.setHalignment(pane, HPos.CENTER);
                 GridPane.setValignment(pane, VPos.CENTER);
-
 
                 //check color of the cell
                 Color color;
@@ -166,11 +170,15 @@ public class ReversiGrid extends GridPane {
                 else {
                     color = Color.TRANSPARENT;
                 }
-
+                if(!color.equals(Color.TRANSPARENT)) {
+                    Circle circleShadow = new Circle((cellWidth/2) - 3, Color.BLACK.brighter().brighter().brighter().brighter());
+                    shadowPane.getChildren().add(circleShadow);
+                }
                 //add circle with corresponding color to cell
-                Circle circle = new Circle(cellWidth/2, color );
+                Circle circle = new Circle((cellWidth/2) - 3 , color );
                 circle.setOnMouseClicked(new DiskFlip(i, j));
                 pane.getChildren().add(circle);
+
             }
         }
     }
