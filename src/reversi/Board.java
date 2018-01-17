@@ -3,13 +3,20 @@ package reversi;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * reversi.reversi.Board.
+ * Board.
  */
 public class Board {
     private int rowsNum;
     private int columnsNum;
     public List<List<Cell>> boardArr = new ArrayList<>();
-
+    /**
+     * Board.
+     *
+     * constructor.
+     *
+     * @param columns   the columns number.
+     * @param rows      the rows number.
+     */
     public Board(int rows, int columns) {
         this.rowsNum = rows;
         this.columnsNum = columns;
@@ -25,20 +32,35 @@ public class Board {
         }
         int midRow = (int)Math.ceil(this.boardArr.size()/2.0);
         int midCol = (int)Math.ceil(this.boardArr.get(0).size()/2.0);
+        //set the first disks.
         this.boardArr.get(midRow - 1).get(midCol -1).setColor(Color.WHITE);
         this.boardArr.get(midRow).get(midCol).setColor(Color.WHITE);
         this.boardArr.get(midRow - 1).get(midCol).setColor(Color.BLACK);
         this.boardArr.get(midRow).get(midCol - 1).setColor(Color.BLACK);
     }
-
+    /**
+     * getRowsNum.
+     *
+     * @return      the number of rows.
+     */
     public int getRowsNum() {
         return this.rowsNum;
     }
 
+    /**
+     * getColumnsNum.
+     *
+     * @return      the number of columns.
+     */
     public int getColumnsNum() {
         return this.columnsNum;
     }
 
+    /**
+     * printBoard.
+     *
+     * print the board.
+     */
     public void printBoard() {
         /*
         //print the first line.

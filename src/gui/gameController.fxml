@@ -16,8 +16,8 @@
 
       <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="600.0" spacing="10.0">
          <children>
-            <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Settings" textFill="WHITE" />
-            <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Close" textFill="WHITE" />
+            <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" text="Settings" style="-fx-background-radius: 6; -fx-background-color:linear-gradient(#002444, #144C7D);  -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 10, 0.0 , 0 , 5);" textFill="WHITE" />
+            <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" text="Close" style="-fx-background-radius: 6; -fx-background-color:linear-gradient(#002444, #144C7D);  -fx-effect: dropshadow( three-pass-box , rgba(255,255,255,0.2) , 10, 0.0 , 0 , 5);" textFill="WHITE" />
             <Line endX="100.0" />
             <Text id="currentPlayerTxt" fx:id="currentPlayerTxt" text="Current player"/>
             <Line endX="100.0" layoutX="13.0" layoutY="173.0" />

@@ -12,6 +12,15 @@ public class ManualLogic implements GameLogic {
     private Player player2;
     private int counter;
 
+    /**
+     * ManualLogic.
+     *
+     * constructor.
+     *
+     * @param player2
+     * @param player1
+     * @param board
+     */
     public ManualLogic(Board board, Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -50,6 +59,14 @@ public class ManualLogic implements GameLogic {
             }
         }
     }
+
+    /**
+     * checkOpt.
+     *
+     * runs all over the board and looking for a cell that belongs to the player.
+     *
+     * @param color     the player's color.
+     */
     public int checkOpt(Color color) {
         this.counter = 0;
         Color negColor, originColor;
@@ -182,6 +199,14 @@ public class ManualLogic implements GameLogic {
         cell.setColor(color);
     }
 
+    /**
+     * validOpt.
+     *
+     * check if this cell is valid option.
+     *
+     * @param x     the x cord of the option.
+     * @param y     the y cord of the option
+     */
     public boolean validOpt(int x, int y) {
         //check if the indexs are legal and if the cell is truly a valid option.
         if(x >= 0 && x < this.board.getRowsNum()
@@ -194,11 +219,26 @@ public class ManualLogic implements GameLogic {
         return false;
     }
 
+    /**
+     * swap.
+     *
+     * runs all over flip the relevant disks.
+     *
+     * @param column        the number of rows in the board.
+     * @param row           the number of columns in the board.
+     * @param negColor      the rival color.
+     * @param originColor   the player color.
+     */
     public void swap(int row, int column, Color originColor, Color negColor) {
         Action action = Action.FLIP;
         scanOpt(row, column, originColor, negColor, action);
     }
 
+    /**
+     * printPoints.
+     *
+     * print points.
+     */
     public void printPoints() {
         int bPoints = this.player1.getCount();
         int wPoints = this.player2.getCount();
@@ -215,6 +255,11 @@ public class ManualLogic implements GameLogic {
     }
 
     @Override
+    /**
+     * getWinner.
+     *
+     * @return      the color of the winner.
+     */
     public Color getWinner() {
         if(player1.getCount() > player2.getCount()) {
             return player1.getType();

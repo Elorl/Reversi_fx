@@ -10,6 +10,16 @@ public class Game {
     private Player player2;
     GameLogic logic;
 
+    /**
+     * Game.
+     *
+     * constructor.
+     *
+     * @param board     the board object.
+     * @param logic     the logic of the game.
+     * @param player1   the first player object.
+     * @param player2   the second player object.
+     */
     public Game(Board board, Player player1, Player player2, GameLogic logic) {
         this.borad = board;
         this.player1 = player1;
@@ -17,6 +27,11 @@ public class Game {
         this.logic = logic;
     }
 
+    /**
+     * Run.
+     *
+     * run the game.
+     */
     public void run() {
         Integer inputX = 0, inputY = 0;
         int counter;
