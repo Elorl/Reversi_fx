@@ -49,11 +49,10 @@ public class Main extends Application{
 
     /**
      * showing game board scene.
-     * @param event
-     * @throws IOException
+     * @param event event occurred
      */
     @FXML
-    public void startAction(ActionEvent event) throws IOException {
+    public void startAction(ActionEvent event)  {
         try {
             Parent gameNode = FXMLLoader.load(getClass().getResource("gameController.fxml"));
             Scene scene = new Scene(gameNode);
@@ -67,6 +66,9 @@ public class Main extends Application{
 
     }
 
+    /**
+     * called when close button is pressed, closing stage.
+     */
     @FXML
     public void closeAction() {
         Stage s = (Stage) this.closeButton.getScene().getWindow();
@@ -80,9 +82,14 @@ public class Main extends Application{
         launch(args);
     }
 
+    /**
+     * creating a default settings file.
+     */
     public void defaultSettings() {
+        //default colors are black and white
         javafx.scene.paint.Color colorP1 = javafx.scene.paint.Color.BLACK;
         javafx.scene.paint.Color colorP2 = javafx.scene.paint.Color.WHITE;
+        //default size is 8
         int sizeBoard = 8;
         String str = colorP1.toString() + " " + colorP2.toString() + " " + sizeBoard;
         File settingsFIle = new File("settings.txt");
