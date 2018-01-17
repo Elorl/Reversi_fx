@@ -17,9 +17,9 @@ public class ManualLogic implements GameLogic {
      *
      * constructor.
      *
-     * @param player2
-     * @param player1
-     * @param board
+     * @param player1       the first player object.
+     * @param player2       the second player object.
+     * @param board         the board object.
      */
     public ManualLogic(Board board, Player player1, Player player2) {
         this.player1 = player1;
@@ -35,6 +35,12 @@ public class ManualLogic implements GameLogic {
             this.optionsArray.add(rowCell);
         }
     }
+
+    /**
+     * initializeOpt.
+     *
+     * initialize the Arraylist of options.
+     */
     public void initializeOpt() {
         for(int i = 0; i < this.board.getRowsNum(); i++) {
             for(int j = 0; j < this.board.getColumnsNum(); j++) {
@@ -43,6 +49,13 @@ public class ManualLogic implements GameLogic {
         }
     }
 
+    /**
+     * printOpt.
+     *
+     * print the options to the console.
+     *
+     * @param count     the amount of options.
+     */
     public void printOpt(int count) {
         int countOfPrint = 0, counter = count;
         System.out.print("Your possible moves: ");
@@ -89,6 +102,17 @@ public class ManualLogic implements GameLogic {
         return this.counter;
     }
 
+    /**
+     * scanOpt.
+     *
+     * search to find relevant options in the range of 3X3 from each cell.
+     *
+     * @param column        the number of rows in the board.
+     * @param row           the number of columns in the board.
+     * @param negColor      the rival color.
+     * @param originColor   the player color.
+     * @param act           the act to make(find or swap).
+     */
     public void scanOpt(int row, int column, Color originColor, Color negColor, Action act) {
         int changeX = 0, changeY = 0;
         int rowsNum = this.board.getRowsNum();
@@ -124,7 +148,20 @@ public class ManualLogic implements GameLogic {
         }
     }
 
-
+    /**
+     * directionScan.
+     *
+     * this function will search the next cell in the relevant direction(depends
+     * the value of the DELTA(changeRow, changeColums). if the cell is what we are looking for,
+     * the function will and the cell to the options array.
+     *
+     * @param i                 the x cord of the cell.
+     * @param j                 the y cord of the cell.
+     * @param changeRow         the delta of the rows.
+     * @param changeColumn      the delta of the columns.
+     * @param originColor       the player color.
+     * @param negColor          the rival color.
+     */
     private void directionScan(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor) {
         boolean flag = true;
         while(flag){
@@ -147,6 +184,21 @@ public class ManualLogic implements GameLogic {
         }
     }
 
+    /**
+     * directionScan.
+     *
+     * this function will search the next cell in the relevant direction(depends
+     * the value of the DELTA(changeRow, changeColums). if the cell is what we are looking for
+     * the function will add the cell to the options array, so in the end of the function all
+     * the array will upside down.
+     *
+     * @param i                 the x cord of the cell.
+     * @param j                 the y cord of the cell.
+     * @param changeRow         the delta of the rows.
+     * @param changeColumn      the delta of the columns.
+     * @param originColor       the player color.
+     * @param negColor          the rival color.
+     */
     private void directionUpside(int i, int j, int changeRow, int changeColumn, Color originColor, Color negColor) {
         int x = i, y = j;
         if(x < 0 || x >= this.board.getRowsNum() || y < 0 || y >= this.board.getColumnsNum()) {
@@ -179,6 +231,16 @@ public class ManualLogic implements GameLogic {
         this.initializeOpt();
     }
 
+    /**
+     * upSideDown.
+     *
+     * this function will increase/ decreade the player's points and will change
+     * cell's color to the new color.
+     *
+     * @param x                 the x cord of the cell.
+     * @param y                 the y cord of the cell.
+     * @param color             the new color of the upside down cell.
+     */
     private void upSideDown(int x, int y, Color color) {
         Cell cell = this.board.boardArr.get(x).get(y);
         if(cell.getColor() == Color.EMPTY) {

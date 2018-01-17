@@ -15,19 +15,6 @@ public interface GameLogic {
     int checkOpt(Color color);
 
     /**
-     * scanOpt.
-     *
-     * search to find relevant options in the range of 3X3 from each cell.
-     *
-     * @param column        the number of rows in the board.
-     * @param row           the number of columns in the board.
-     * @param negColor      the rival color.
-     * @param originColor   the player color.
-     * @param act           the act to make(find or swap).
-     */
-    void scanOpt(int row, int column, Color originColor, Color negColor, Action act);
-
-    /**
      * swap.
      *
      * runs all over flip the relevant disks.
