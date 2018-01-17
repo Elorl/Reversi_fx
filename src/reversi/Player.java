@@ -1,5 +1,6 @@
 package reversi;
 
+
 /**
  * Player.
  */
