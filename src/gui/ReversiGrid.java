@@ -83,7 +83,6 @@ public class ReversiGrid extends GridPane {
          */
         @Override
         public void handle(MouseEvent event){
-
             //negative color
             reversi.Color neg = turnPlayer.getType().toggle();
             int counter = 0;

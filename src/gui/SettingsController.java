@@ -18,7 +18,11 @@ import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * controller of settings window.
+ */
 public class SettingsController implements Initializable {
+    //members
     @FXML
     public Stage settingsStage;
     @FXML
@@ -47,7 +51,10 @@ public class SettingsController implements Initializable {
         //initialize the list of players, to choose who will start.
     }
 
-
+    /**
+     * called when setting button in game scene is clicked. opens settings window.
+     * @throws IOException
+     */
     public void settingsAction() throws IOException {
         this.settingsStage = new Stage();
         this.settingsStage.initModality(Modality.APPLICATION_MODAL);
@@ -58,11 +65,16 @@ public class SettingsController implements Initializable {
 
     }
 
+    /**
+     * saving values chosen by user in color picker. called when save button is clicked
+     */
     public void saveVal() {
         Color colorP1, colorP2;
         colorP1 = this.player1Color.getValue();
         colorP2 = this.player2Color.getValue();
         String size;
+
+        //validate that all info was chosen before save
         try {
             size = this.boardSizesBox.getValue().toString();
         } catch (Exception NullPointerException) {
@@ -70,6 +82,7 @@ public class SettingsController implements Initializable {
             this.settingsStage = (Stage) this.saveBtn.getScene().getWindow();
             return;
         }
+        //if 2 players colors are not identical, write to file
         if (!colorP1.toString().equals(colorP2.toString())) {
             File settingsFIle = new File("settings.txt");
             String[] num = size.split("x");
@@ -84,6 +97,7 @@ public class SettingsController implements Initializable {
             } catch (Exception FileNotFoundException) {
                 throw new RuntimeException();
             }
+            //if colors identical
         } else {
             AlertBox.display("Choose different color to each player!");
         }
