@@ -14,11 +14,11 @@
 <HBox fx:id="root" prefHeight="600.0" spacing="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.gameController">
    <children>
 
-         <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="600.0" spacing="10.0">
-            <children>
-               <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Settings" textFill="WHITE" />
-               <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Close" textFill="WHITE" />
-               <Line endX="100.0" />
+      <VBox id="sideBar" fx:id="sideBar" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" prefHeight="600.0" spacing="10.0">
+         <children>
+            <Button id="SettingsButton" fx:id="settingsButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#settingsAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Settings" textFill="WHITE" />
+            <Button id="closeButton" fx:id="closeButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#closeAction" prefHeight="0.0" prefWidth="98.0" style="-fx-background-color: #461c00; -fx-background-radius: 6;" text="Close" textFill="WHITE" />
+            <Line endX="100.0" />
             <Text id="currentPlayerTxt" fx:id="currentPlayerTxt" text="Current player"/>
             <Line endX="100.0" layoutX="13.0" layoutY="173.0" />
             <Circle id="currentPlayerCircle" fx:id="currentPlayerCircle" fill="#1265b20f" layoutX="62.0" layoutY="206.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" />
@@ -34,12 +34,11 @@
             <Label id="player2ScoreLbl" fx:id="player2ScoreLbl" text="2" textFill="#461c00" />
             <Label id="gameOver" fx:id="gameOver" />
             <Label />
-            </children>
+         </children>
          <padding>
             <Insets right="10.0" top="10.0" />
          </padding>
-         </VBox>
+      </VBox>
    </children>
 
 </HBox>
-

@@ -78,6 +78,8 @@ public class gameController implements Initializable{
             Scene scene = new Scene(root, 600, 600);
             stage.setTitle("Reversi Game");
             stage.setScene(scene);
+            stage.setWidth(400);
+            stage.setHeight(400);
             stage.show();
         }catch (Exception ex) {
             ex.printStackTrace();
@@ -168,6 +170,3 @@ public class gameController implements Initializable{
         grid.draw();
     }
 }
-
-
-

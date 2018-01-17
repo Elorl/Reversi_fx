@@ -11,42 +11,41 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="100.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.SettingsController">
-   <children>
-      <SplitPane dividerPositions="0.5" layoutX="3.0" layoutY="4.0" orientation="VERTICAL">
-         <items>
-            <AnchorPane maxHeight="-Infinity" prefHeight="0.0" prefWidth="40.0">
-               <children>
-                  <Label layoutX="18.0" text="Reversi &gt; Settings" />
-               </children>
-            </AnchorPane>
-          <AnchorPane fx:id="ap" minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="598.0">
-               <children>
-                  <ColorPicker fx:id="player1Color" layoutX="294.0" layoutY="81.0" prefHeight="36.0" prefWidth="164.0" />
-                  <ColorPicker fx:id="player2Color" layoutX="294.0" layoutY="139.0" prefHeight="36.0" prefWidth="164.0" />
-                  <ChoiceBox fx:id="boardSizesBox" layoutX="294.0" layoutY="194.0" prefHeight="36.0" prefWidth="164.0" />
-                  <Label layoutX="96.0" layoutY="81.0" prefHeight="36.0" prefWidth="137.0" text="player One color:" />
-                  <Label layoutX="98.0" layoutY="139.0" prefHeight="36.0" prefWidth="149.0" text="player Two color:" />
-                  <Label layoutX="96.0" layoutY="194.0" prefHeight="36.0" prefWidth="137.0" text="Board size" />
-                  <Label layoutX="96.0" layoutY="26.0" text="Please choose your preference:">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <textFill>
-                        <LinearGradient endY="0.8221153846153846" startY="0.3317307692307693">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="BLACK" offset="0.007407407407407408" />
-                              <Stop color="#515151" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </textFill>
-                  </Label>
-                  <Button fx:id="saveBtn" layoutX="234.0" layoutY="277.0" mnemonicParsing="false" onAction="#saveVal" prefHeight="40.0" prefWidth="121.0" style="-fx-background-radius: 6;" text="Save" />
-                  <Label fx:id="comment" layoutX="98.0" layoutY="59.0" textFill="RED" />
-               </children>
-            </AnchorPane>
-         </items>
-      </SplitPane>
-   </children>
+    <children>
+        <SplitPane dividerPositions="0.5" layoutX="3.0" layoutY="4.0" orientation="VERTICAL">
+            <items>
+                <AnchorPane maxHeight="-Infinity" prefHeight="0.0" prefWidth="40.0">
+                    <children>
+                        <Label layoutX="18.0" text="Reversi &gt; Settings" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="ap" minHeight="0.0" minWidth="0.0" prefHeight="350.0" prefWidth="598.0">
+                    <children>
+                        <ColorPicker fx:id="player1Color" layoutX="294.0" layoutY="81.0" prefHeight="36.0" prefWidth="164.0" />
+                        <ColorPicker fx:id="player2Color" layoutX="294.0" layoutY="139.0" prefHeight="36.0" prefWidth="164.0" />
+                        <ChoiceBox fx:id="boardSizesBox" layoutX="294.0" layoutY="194.0" prefHeight="36.0" prefWidth="164.0" />
+                        <Label layoutX="96.0" layoutY="81.0" prefHeight="36.0" prefWidth="137.0" text="player One color:" />
+                        <Label layoutX="98.0" layoutY="139.0" prefHeight="36.0" prefWidth="149.0" text="player Two color:" />
+                        <Label layoutX="96.0" layoutY="194.0" prefHeight="36.0" prefWidth="137.0" text="Board size" />
+                        <Label layoutX="96.0" layoutY="26.0" text="Please choose your preference:">
+                            <font>
+                                <Font name="System Bold" size="20.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endY="0.8221153846153846" startY="0.3317307692307693">
+                                    <stops>
+                                        <Stop color="BLACK" />
+                                        <Stop color="BLACK" offset="0.007407407407407408" />
+                                        <Stop color="#515151" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                        </Label>
+                        <Button fx:id="saveBtn" layoutX="234.0" layoutY="277.0" mnemonicParsing="false" onAction="#saveVal" prefHeight="40.0" prefWidth="121.0" style="-fx-background-radius: 6;" text="Save" />
+                        <Label fx:id="comment" layoutX="98.0" layoutY="59.0" textFill="RED" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
 </AnchorPane>
-

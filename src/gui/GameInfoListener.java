@@ -14,4 +14,3 @@ public interface GameInfoListener {
      */
     void alertEnd(Color winnerColor);
 }
-

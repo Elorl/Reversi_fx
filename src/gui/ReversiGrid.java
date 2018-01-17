@@ -133,7 +133,7 @@ public class ReversiGrid extends GridPane {
                 }
             }
         }
-        }
+    }
 
 
 
@@ -141,12 +141,12 @@ public class ReversiGrid extends GridPane {
      * switch players.
      */
     private void togglePlayers() {
-            if(turnPlayer == player1) {
-                turnPlayer = player2;
-            } else {
-                turnPlayer = player1;
-            }
+        if(turnPlayer == player1) {
+            turnPlayer = player2;
+        } else {
+            turnPlayer = player1;
         }
+    }
 
     /**
      * draw grid.
@@ -212,4 +212,3 @@ public class ReversiGrid extends GridPane {
         }
     }
 }
-
