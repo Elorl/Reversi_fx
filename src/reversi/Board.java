@@ -9,6 +9,7 @@ public class Board {
     private int rowsNum;
     private int columnsNum;
     public List<List<Cell>> boardArr = new ArrayList<>();
+
     /**
      * Board.
      *
@@ -38,6 +39,7 @@ public class Board {
         this.boardArr.get(midRow - 1).get(midCol).setColor(Color.BLACK);
         this.boardArr.get(midRow).get(midCol - 1).setColor(Color.BLACK);
     }
+
     /**
      * getRowsNum.
      *
@@ -62,7 +64,6 @@ public class Board {
      * print the board.
      */
     public void printBoard() {
-        /*
         //print the first line.
         System.out.print(" | ");
         for(int i=1; i<9; i++) {
@@ -95,6 +96,5 @@ public class Board {
             System.out.println();
             System.out.println("----------------------------------");
         }
-        */
     }
 }

@@ -19,7 +19,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * controller of settings window.
+ * SettingsController.
+ *
  */
 public class SettingsController implements Initializable {
     //members
@@ -39,6 +40,12 @@ public class SettingsController implements Initializable {
     private AnchorPane ap = new AnchorPane();
     @FXML
     private Label comment = new Label();
+
+    /**
+     * initialize.
+     *
+     * initialize the settings screen.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //initialize board sizes list 4*4 to 20*20
@@ -52,6 +59,8 @@ public class SettingsController implements Initializable {
     }
 
     /**
+     * settingsAction.
+     *
      * called when setting button in game scene is clicked. opens settings window.
      * @throws IOException
      */
@@ -66,6 +75,8 @@ public class SettingsController implements Initializable {
     }
 
     /**
+     * saveVal.
+     *
      * saving values chosen by user in color picker. called when save button is clicked
      */
     public void saveVal() {

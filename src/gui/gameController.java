@@ -1,6 +1,5 @@
 package gui;
 
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +21,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * gameController.
+ *
+ */
 public class gameController implements Initializable{
 
     ReversiGrid grid;
@@ -53,6 +56,8 @@ public class gameController implements Initializable{
     private javafx.scene.paint.Color colors[];
 
     /**
+     * settingsAction.
+     *
      * opening a setting windows.
      */
     @FXML
@@ -68,6 +73,8 @@ public class gameController implements Initializable{
     }
 
     /**
+     * closeAction.
+     *
      * closing game window and returns to main window, menu.
      */
     @FXML
@@ -85,6 +92,12 @@ public class gameController implements Initializable{
             ex.printStackTrace();
         }
     }
+
+    /**
+     * initialize.
+     *
+     * initialize the screen.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //reading from settings file

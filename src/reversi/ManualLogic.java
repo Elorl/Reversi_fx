@@ -316,12 +316,13 @@ public class ManualLogic implements GameLogic {
         this.initializeOpt();
     }
 
-    @Override
+
     /**
      * getWinner.
      *
      * @return      the color of the winner.
      */
+    @Override
     public Color getWinner() {
         if(player1.getCount() > player2.getCount()) {
             return player1.getType();

@@ -16,6 +16,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
+/**
+ * Main.
+ */
 public class Main extends Application{
     @FXML
     Button startButton;
@@ -23,6 +26,12 @@ public class Main extends Application{
     Button settingsButton;
     @FXML
     Button closeButton;
+
+    /**
+     * start.
+     *
+     * openes a setting menu.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.defaultSettings();
@@ -33,6 +42,8 @@ public class Main extends Application{
     }
 
     /**
+     * settingsAction.
+     *
      * openes a setting menu.
      */
     @FXML
@@ -48,6 +59,8 @@ public class Main extends Application{
     }
 
     /**
+     * startAction.
+     *
      * showing game board scene.
      * @param event event occurred
      */
@@ -67,6 +80,8 @@ public class Main extends Application{
     }
 
     /**
+     * closeAction.
+     *
      * called when close button is pressed, closing stage.
      */
     @FXML
@@ -75,7 +90,10 @@ public class Main extends Application{
         s.close();
     }
 
-
+    /**
+     * main.
+     *
+     */
     public static void main(String[] args) {
 
 
@@ -83,6 +101,8 @@ public class Main extends Application{
     }
 
     /**
+     * defaultSettings.
+     *
      * creating a default settings file.
      */
     public void defaultSettings() {

@@ -1,14 +1,22 @@
 package gui;
 
-
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 
+/**
+ * AlertBox.
+ *
+ */
 public class AlertBox {
 
+    /**
+     * display.
+     *
+     * display the alertBox.
+     */
     public static void display(String msg) {
         Stage window = new Stage();
 

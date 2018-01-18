@@ -16,7 +16,9 @@ import javafx.scene.shape.Circle;
 import java.io.IOException;
 import java.util.List;
 
-
+/**
+ * ReversiGrid.
+ */
 public class ReversiGrid extends GridPane {
     private Board board;
     private Player player1;
@@ -27,7 +29,10 @@ public class ReversiGrid extends GridPane {
     private Color[] colors;
 
     /**
-     * constructor
+     * ReversiGrid.
+     *
+     * constructor.
+     *
      * @param board reversi board object
      * @param player1 player1
      * @param player2 player2
@@ -61,6 +66,8 @@ public class ReversiGrid extends GridPane {
     }
 
     /**
+     * DiskFlip.
+     *
      * an event handler for updating board after a click
      */
     private class DiskFlip implements EventHandler<MouseEvent> {
@@ -68,7 +75,10 @@ public class ReversiGrid extends GridPane {
         int y;
 
         /**
+         * DiskFlip.
+         *
          * constructor.
+         *
          * @param x x index on grid
          * @param y y index on grid
          */
@@ -78,6 +88,8 @@ public class ReversiGrid extends GridPane {
         }
 
         /**
+         * handle.
+         *
          * handles a mouse event by flipping relevant disks on grid
          * @param event mouse event
          */
@@ -137,6 +149,8 @@ public class ReversiGrid extends GridPane {
 
 
     /**
+     * togglePlayers.
+     *
      * switch players.
      */
     private void togglePlayers() {
@@ -148,6 +162,8 @@ public class ReversiGrid extends GridPane {
     }
 
     /**
+     * draw.
+     *
      * draw grid.
      */
     public void draw() {
